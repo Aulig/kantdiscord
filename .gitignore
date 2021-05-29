@@ -1,0 +1,6 @@
+/venv/
+/.idea/
+/config.py
+/ffmpeg.exe
+/ffplay.exe
+/ffprobe.exe
