@@ -1,3 +1,5 @@
+import os
+
 import discord
 from discord.ext import commands
 
@@ -10,6 +12,11 @@ initial_extensions = ['cogs.random_stuff',
 bot = commands.Bot(command_prefix=">")
 
 if __name__ == '__main__':
+
+    import platform
+    if platform.system() == "Linux":
+        os.system("sudo apt install ffmpeg")
+
     for extension in initial_extensions:
         bot.load_extension(extension)
 

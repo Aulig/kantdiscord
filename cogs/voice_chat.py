@@ -31,7 +31,7 @@ class VoiceChatCog(commands.Cog):
             else:
                 vc = await voice_channel.connect()
 
-                vc.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=attachments[0].url))
+                vc.play(discord.FFmpegPCMAudio(source=attachments[0].url))
                 playing_now = True
 
                 while vc.is_playing():
