@@ -13,8 +13,8 @@ class RandomStuffCog(commands.Cog):
     async def sus(self, ctx):
         potential_responses = [
             "You're so sussy!",
-            "Halts Maul und verpiss dich!",
-            "amogus. bing bing bing bing bing bing bing               bing bing bing",
+            "https://tenor.com/view/sussy-gif-20489896",
+            "AMOGUS.\n:musical_note: bing :musical_note: bing :musical_note: bing :musical_note: bing :musical_note: bing :musical_note: bing :musical_note: bing :musical_note:\n:musical_note: bing :musical_note: bing :musical_note: bing :musical_note:",
             """
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀⠀⠀⠀⠀⠀
