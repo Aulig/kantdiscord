@@ -29,4 +29,13 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name='Amogus'))
 
 
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if "janny" in message.content:
+        await message.channel.send("https://tenor.com/view/1blocked-message-gif-19278188")
+
+
 bot.run(TOKEN)
