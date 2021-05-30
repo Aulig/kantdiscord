@@ -37,5 +37,7 @@ async def on_message(message):
     if "janny" in message.content:
         await message.channel.send("https://tenor.com/view/1blocked-message-gif-19278188")
 
+    await bot.process_commands(message)
+
 
 bot.run(TOKEN)
