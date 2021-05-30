@@ -1,12 +1,9 @@
+def url_prepare_string(input):
+    if not input:
+        return "_"
+    else:
+        return input.replace(" ", "_")
+
+
 def create_meme(top_text, bottom_text, background):
-
-    if not top_text:
-        top_text = "_"
-
-    if not bottom_text:
-        bottom_text = "_"
-
-    bottom_text = bottom_text.replace(" ", "_")
-    top_text = top_text.replace(" ", "_")
-
-    return f"https://api.memegen.link/images/custom/{top_text}/{bottom_text}.png?background={background}"
+    return f"https://api.memegen.link/images/custom/{url_prepare_string(top_text)}/{url_prepare_string(bottom_text)}.png?background={background}"
