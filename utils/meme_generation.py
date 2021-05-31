@@ -1,8 +1,11 @@
+import urllib.parse
+
+
 def url_prepare_string(input):
     if not input:
         return "_"
     else:
-        return input.replace(" ", "_")
+        return urllib.parse.quote(input)
 
 
 def create_meme(top_text, bottom_text, background):
