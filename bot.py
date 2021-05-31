@@ -34,6 +34,8 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
+    if message.content == "N":
+        await message.channel.send("https://images-ext-2.discordapp.net/external/jMogcAO36oreMXMIcdomxY5KiIg4zQx_d188bA674yM/%3Fcb%3D20190414152105/https/static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest")
     if "janny" in message.content.lower():
         await message.channel.send("https://tenor.com/view/1blocked-message-gif-19278188")
 
