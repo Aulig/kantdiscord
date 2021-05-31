@@ -68,6 +68,8 @@ class VoiceChatCog(commands.Cog):
             else:
                 vc = await voice_channel.connect()
 
+                await sleep(1)
+
                 vc.play(discord.FFmpegPCMAudio(source=attachments[0].url))
                 set_playing_now(voice_channel, True)
 
@@ -77,6 +79,8 @@ class VoiceChatCog(commands.Cog):
                         vc.stop()
                     else:
                         await sleep(0.5)
+
+                await sleep(1)
 
                 await vc.disconnect()
                 set_playing_now(voice_channel, False)
