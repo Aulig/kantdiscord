@@ -4,6 +4,9 @@ from asyncio import sleep
 import discord
 from discord.ext import commands
 
+# without these options the bot will often stop playing too soon
+FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+
 PLAYING_NOW = "playing_now"
 SHOULD_SKIP = "should_skip"
 
@@ -47,6 +50,51 @@ def set_should_skip(voice_channel, new_value):
     set_vc_property(voice_channel, SHOULD_SKIP, new_value)
 
 
+async def safe_is_playing(vc):
+    """ this should ignore sporadic disconnects of less than 5 seconds """
+    if vc.is_playing():
+        return True
+    else:
+        await sleep(5)
+        return vc.is_playing()
+
+
+async def play_url(url, ctx, say_errors=True):
+
+    """:returns False if error while playing"""
+
+    voice = ctx.message.author.voice
+    voice_channel = voice.channel if voice else None
+
+    if voice_channel is None:
+        if say_errors:
+            await ctx.send("You're not in a VC. Dummy!")
+        return False
+    elif get_playing_now(voice_channel):
+        if say_errors:
+            await ctx.send("Already playing something else.")
+        return False
+    else:
+        vc = await voice_channel.connect()
+
+        await sleep(1)
+
+        vc.play(discord.FFmpegPCMAudio(source=url, **FFMPEG_OPTIONS))
+        set_playing_now(voice_channel, True)
+
+        while await safe_is_playing(vc):
+            if get_should_skip(voice_channel):
+                set_should_skip(voice_channel, False)
+                vc.stop()
+            else:
+                await sleep(1)
+
+        await vc.disconnect()
+        set_playing_now(voice_channel, False)
+
+    return True
+
+
 class VoiceChatCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -59,31 +107,7 @@ class VoiceChatCog(commands.Cog):
         if not attachments:
             await ctx.send("No file attached. Idiot!")
         else:
-            voice = ctx.message.author.voice
-            voice_channel = voice.channel if voice else None
-            if voice_channel is None:
-                await ctx.send("You're not in a VC. Dummy!")
-            elif get_playing_now(voice_channel):
-                await ctx.send("Already playing something else.")
-            else:
-                vc = await voice_channel.connect()
-
-                await sleep(1)
-
-                vc.play(discord.FFmpegPCMAudio(source=attachments[0].url))
-                set_playing_now(voice_channel, True)
-
-                while vc.is_playing():
-                    if get_should_skip(voice_channel):
-                        set_should_skip(voice_channel, False)
-                        vc.stop()
-                    else:
-                        await sleep(0.5)
-
-                await sleep(1)
-
-                await vc.disconnect()
-                set_playing_now(voice_channel, False)
+            await play_url(attachments[0].url, ctx)
 
     @commands.command(name="s", help="Skip/stop the current file from playing.")
     async def skip(self, ctx):

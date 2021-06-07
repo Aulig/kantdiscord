@@ -36,7 +36,7 @@ async def on_message(message):
 
     if message.content == "N":
         await message.channel.send("https://static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest?cb=20190414152105")
-    if "janny" in message.content.lower():
+    elif "janny" in message.content.lower():
         await message.channel.send("https://tenor.com/view/1blocked-message-gif-19278188")
 
     await bot.process_commands(message)
