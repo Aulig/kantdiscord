@@ -2,10 +2,11 @@
 
 import random
 
+from discord import File
 from discord.ext import commands
 
 from cogs.voice_chat import play_url
-from utils import meme_generation, text_utils
+from utils import image_utils, text_utils
 
 
 class RandomStuffCog(commands.Cog):
@@ -52,11 +53,16 @@ class RandomStuffCog(commands.Cog):
         soyjak_links = [
             "https://pbs.twimg.com/media/ER-LfVuXsAAVMCF.png",
             "https://i.kym-cdn.com/photos/images/original/002/070/088/10d.png",
-            "https://media.discordapp.net/attachments/586322638377451520/846056799035850772/6ca.png"
+            "https://media.discordapp.net/attachments/586322638377451520/846056799035850772/6ca.png",
+            "https://i.imgur.com/aKa00AM.png"
         ]
 
         split = text_utils.split_text(" ".join(args))
-        await ctx.send(meme_generation.create_meme(split[0], split[1], random.choice(soyjak_links)))
+        await ctx.send(image_utils.create_meme(split[0], split[1], random.choice(soyjak_links)))
+
+    @commands.command(name="problem", help="Got a problem?")
+    async def problem(self, ctx):
+        await ctx.send(file=File("problem.mp3", filename="problem.mp3"))
 
 
 def setup(bot):
