@@ -39,13 +39,18 @@ async def on_message(message):
 
     lower_case_content = message.content.lower()
 
+    if lower_case_content.starts_with(">"):
+        # don't provide a special reaction to commands
+        return
+
     if message.content == "N":
         await message.channel.send("https://static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest?cb=20190414152105")
 
     janny_triggers = ["janny", "jenny", "jannies", "jennies"]
     janny_replies = [
         "https://media.discordapp.net/attachments/536819938514436116/867320829816602634/Resilienz_Coping_web.jpg",
-        "https://tenor.com/view/1blocked-message-gif-19278188"]
+        "https://tenor.com/view/1blocked-message-gif-19278188",
+        "https://cdn.discordapp.com/attachments/536819938514436116/867745626216333362/unknown.png"]
 
     for janny_trigger in janny_triggers:
         if janny_trigger in lower_case_content:
