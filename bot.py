@@ -1,13 +1,11 @@
-import os
 import random
-import re
 
 import discord
 from discord.ext import commands
 
 # this config file is gitignored because it contains secrets
 from config import TOKEN
-from utils import image_utils, url_utils
+from utils import text_utils
 
 initial_extensions = ['cogs.random_stuff',
                       'cogs.voice_chat']
@@ -39,14 +37,14 @@ async def on_message(message):
 
     lower_case_content = message.content.lower()
 
-    if lower_case_content.starts_with(">"):
+    if lower_case_content.startswith(">"):
         # don't provide a special reaction to commands
         return
 
     if message.content == "N":
         await message.channel.send("https://static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest?cb=20190414152105")
 
-    janny_triggers = ["janny", "jenny", "jannies", "jennies"]
+    janny_triggers = ["janny", "jenny", "jannies", "jennies", "jannys", "jennys"]
     janny_replies = [
         "https://media.discordapp.net/attachments/536819938514436116/867320829816602634/Resilienz_Coping_web.jpg",
         "https://tenor.com/view/1blocked-message-gif-19278188",
@@ -55,6 +53,11 @@ async def on_message(message):
     for janny_trigger in janny_triggers:
         if janny_trigger in lower_case_content:
             await message.channel.send(random.choice(janny_replies))
+
+            if random.randint(0, 10) == 4:
+                cope_words = ["cope", "seethe", "malding", "stay mad"]
+                await text_utils.send_words_slowly(cope_words, message.channel)
+
             break
 
     # url_to_download = None
