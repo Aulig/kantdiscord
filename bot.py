@@ -1,4 +1,5 @@
 import random
+from asyncio import sleep
 
 import discord
 from discord.ext import commands
@@ -41,8 +42,14 @@ async def on_message(message):
         # don't provide a special reaction to commands
         return
 
+    # only for doom (Normally "The Doominator")
     if message.content == "N":
-        await message.channel.send("https://static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest?cb=20190414152105")
+        if "The Doominator" in message.author.name or "Aulig" in message.author.name:
+            await message.channel.send("https://static.wikia.nocookie.net/doawk/images/5/59/Manny_says_ploopy.jpg/revision/latest?cb=20190414152105")
+        else:
+            gif_msg = await message.channel.send("https://media.discordapp.net/attachments/512233995124211733/677974431817138227/1510964224_giphy_3.gif")
+            await sleep(10)
+            await gif_msg.delete()
 
     janny_triggers = ["janny", "jenny", "jannies", "jennies", "jannys", "jennys"]
     janny_replies = [
