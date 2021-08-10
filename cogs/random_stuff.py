@@ -64,6 +64,12 @@ class RandomStuffCog(commands.Cog):
     async def problem(self, ctx):
         await ctx.send(file=File("problem.mp3", filename="problem.mp3"))
 
+    @commands.command(name="joo", help="A plea to joo bidin.")
+    async def joo(self, ctx, *args):
+        await ctx.send("""https://cdn.discordapp.com/attachments/730713281278509079/801985700005543956/video0.mp4
+jooo bidin, jooo bidin, jooo bidin, jooo bidin this message from mohammed kalakeen full face of kurdistan for youu jooo bidin. you go check up in the docter; you have 2 yeal. your live is 2 yeal. 2 yeal from now, from today too 2 yeal o 1 yeal and 6 month o 2 yeal. you life. after this one you pass aweh. you go check up in the docter, this message from mohammed kalakeen full face of kurdistan. you do, do you good job for da usa for da 50 staet in 2 yeal. you do pull down iran for us, we want our kurdistan can-... new country no more iran no more iraq no more tourkey no more suri, full face of kurdistan; we give you""")
+        await ctx.send("https://media.discordapp.net/attachments/536819938514436116/874558455669751818/unknown.png")
+
 
 def setup(bot):
     bot.add_cog(RandomStuffCog(bot))
