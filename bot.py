@@ -78,7 +78,10 @@ async def on_message(message):
 ⠀⠐⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⢀⠤⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀
             """,
             "https://i.kym-cdn.com/photos/images/facebook/001/939/162/b61.png",
-            "https://media.discordapp.net/attachments/536819938514436116/873831647253000222/1628393963638.png"]
+            "https://media.discordapp.net/attachments/536819938514436116/873831647253000222/1628393963638.png",
+            # Yuur Coping
+            "https://cdn.discordapp.com/attachments/536819938514436116/919190523930083338/unknown.png"
+        ]
 
         for janny_trigger in janny_triggers:
             if janny_trigger in lower_case_content:
