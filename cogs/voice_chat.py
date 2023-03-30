@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import asyncio
 from asyncio import sleep
 
 import discord
@@ -81,6 +82,11 @@ async def play_url(url, ctx, say_errors=True):
 
         vc.play(discord.FFmpegPCMAudio(source=url, **FFMPEG_OPTIONS))
         set_playing_now(voice_channel, True)
+
+        # avoid sped up audio in the beginning
+        voice.pause()
+        await asyncio.sleep(1)
+        voice.resume()
 
         while await safe_is_playing(vc):
             if get_should_skip(voice_channel):
