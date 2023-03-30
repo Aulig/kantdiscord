@@ -124,5 +124,5 @@ class VoiceChatCog(commands.Cog):
                 await ctx.send("Nothing playing at the moment. Poophead!")
 
 
-def setup(bot):
-    bot.add_cog(VoiceChatCog(bot))
+async def setup(bot):
+    await bot.add_cog(VoiceChatCog(bot))

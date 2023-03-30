@@ -44,11 +44,14 @@ class RandomStuffCog(commands.Cog):
         ]
 
         # try to play the amogus sound effect, if not successful, send a text message instead
-        if not await play_url("https://cdn.discordapp.com/attachments/535224272805953559/851447691443830835/AMOGUS-5DlROhT8NgU.webm", ctx, say_errors=False):
+        if not await play_url(
+                "https://cdn.discordapp.com/attachments/535224272805953559/851447691443830835/AMOGUS-5DlROhT8NgU.webm",
+                ctx, say_errors=False):
             response = random.choice(potential_responses)
             await ctx.send(response)
 
-    @commands.command(name="soy", help="Someone said something you didn't like? Gonna cry about it? Piss your pants? Use this command instead.")
+    @commands.command(name="soy",
+                      help="Someone said something you didn't like? Gonna cry about it? Piss your pants? Use this command instead.")
     async def soy(self, ctx, *args):
         soyjak_links = [
             "https://pbs.twimg.com/media/ER-LfVuXsAAVMCF.png",
@@ -71,5 +74,5 @@ jooo bidin, jooo bidin, jooo bidin, jooo bidin this message from mohammed kalake
         await ctx.send("https://media.discordapp.net/attachments/536819938514436116/874558455669751818/unknown.png")
 
 
-def setup(bot):
-    bot.add_cog(RandomStuffCog(bot))
+async def setup(bot):
+    await bot.add_cog(RandomStuffCog(bot))

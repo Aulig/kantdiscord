@@ -1,3 +1,4 @@
+import asyncio
 import random
 from asyncio import sleep
 
@@ -8,20 +9,20 @@ from discord.ext import commands
 from config import TOKEN
 from utils import text_utils
 
-initial_extensions = ['cogs.random_stuff',
-                      'cogs.voice_chat']
+initial_extensions = [
+    'cogs.random_stuff',
+    'cogs.voice_chat'
+]
 
-bot = commands.Bot(command_prefix=">")
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=">", intents=intents)
 
-if __name__ == '__main__':
 
-    # gameserver.gratis seems to have ffmpeg preinstalled :)
-    # import platform
-    # if platform.system() == "Linux":
-    #     os.system("sudo apt install ffmpeg")
-
-    for extension in initial_extensions:
-        bot.load_extension(extension)
+async def main():
+    async with bot:
+        for extension in initial_extensions:
+            await bot.load_extension(extension)
+        await bot.start(TOKEN)
 
 
 @bot.event
@@ -77,6 +78,7 @@ async def on_message(message):
 ⠀⠀⠀⠀⣀⣠⠊⠀⣀⠎⠁⠀⠀⠀⠙⠳⢴⡦⡴⢶⣞⣁⣀⣀⡀⠀⠀⠀⠀⠀
 ⠀⠐⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⢀⠤⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀
             """,
+            # soyjak speech bubble
             "https://i.kym-cdn.com/photos/images/facebook/001/939/162/b61.png",
             "https://media.discordapp.net/attachments/536819938514436116/873831647253000222/1628393963638.png",
             # Yuur Coping
@@ -118,4 +120,4 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
-bot.run(TOKEN)
+asyncio.run(main())
