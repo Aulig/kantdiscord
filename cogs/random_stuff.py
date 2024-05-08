@@ -67,6 +67,10 @@ class RandomStuffCog(commands.Cog):
     async def problem(self, ctx):
         await ctx.send(file=File("problem.mp3", filename="problem.mp3"))
 
+    @commands.command(name="back", help="Missed me?")
+    async def back(self, ctx):
+        await ctx.send(file=File("back.mp3", filename="back.mp3"))
+
     @commands.command(name="joo", help="A plea to joo bidin.")
     async def joo(self, ctx, *args):
         await ctx.send("""https://cdn.discordapp.com/attachments/730713281278509079/801985700005543956/video0.mp4

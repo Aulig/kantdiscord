@@ -54,6 +54,7 @@ async def on_message(message):
 
         janny_triggers = ["janny", "jenny", "jannies", "jennies", "jannys", "jennys", "janitor"]
         janny_replies = [
+            "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677944308i/61414139.jpg",
             "https://media.discordapp.net/attachments/536819938514436116/867320829816602634/Resilienz_Coping_web.jpg",
             "https://tenor.com/view/1blocked-message-gif-19278188",
             "https://cdn.discordapp.com/attachments/536819938514436116/867747945796206642/seethe.mp4",
@@ -82,7 +83,8 @@ async def on_message(message):
             "https://i.kym-cdn.com/photos/images/facebook/001/939/162/b61.png",
             "https://media.discordapp.net/attachments/536819938514436116/873831647253000222/1628393963638.png",
             # Yuur Coping
-            "https://cdn.discordapp.com/attachments/536819938514436116/919190523930083338/unknown.png"
+            "https://cdn.discordapp.com/attachments/536819938514436116/919190523930083338/unknown.png",
+            # Janny Song (suno.ai)
         ]
 
         for janny_trigger in janny_triggers:
