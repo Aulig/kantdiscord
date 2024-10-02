@@ -16,6 +16,8 @@ I'm mostly writing this down so I remember it when I come back to this in the fu
 
 ## Elsewhere
 - `sudo apt install ffmpeg`
+- `python -m venv venv`
+- `source venv/bin/activate`
 - `pip install -r requirements.txt`
 - create a config.py file with `TOKEN = "YourDiscordToken"`
 - Create a systemd service to autostart your bot:
@@ -27,7 +29,7 @@ I'm mostly writing this down so I remember it when I come back to this in the fu
   
           [Service]
           Type=simple
-          ExecStart=/usr/bin/python3 /home/aulig/kantdiscord/bot.py
+          ExecStart=/home/aulig/kantdiscord/venv/bin/python3 /home/aulig/kantdiscord/bot.py
           WorkingDirectory=/home/aulig/kantdiscord
           User=aulig
           StandardOutput=append:/home/aulig/kantdiscord/systemdexecution.log
